@@ -80,6 +80,34 @@ $mutantes = [
     <main>
         <h1>Bienvenido a la wiqui del mundo de X-Men</h1>
         <p>Descubre a los mutantes y sus habilidades.</p>
+        <div class="container mt-4">
+            <div class="row">
+                <?php foreach ($mutantes as $mutante): ?>
+                <?php
+                $nombre = strtolower(str_replace(' ', '', $mutante->getNombre()));
+                $extensiones = ['jpg', 'jpeg', 'png', 'webp'];
+                $imagen = 'images/default.jpg';
+
+                foreach ($extensiones as $ext) {
+                    if (file_exists(__DIR__ . "/images/{$nombre}.{$ext}")) {
+                        $imagen = "images/{$nombre}.{$ext}";
+                        break;
+                    }
+                }
+                ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                    <img src="<?= $imagen ?>" class="card-img-top" alt="Imagen de <?= $mutante->getNombre() ?>">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= ucfirst($mutante->getNombre()) ?></h5>
+                        <p class="card-text"><?= $mutante->getDescripcion() ?></p>
+                        <span class="badge bg-primary"><?= $mutante->getPoder()->value ?></span>
+                    </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
 
         
     </main>
