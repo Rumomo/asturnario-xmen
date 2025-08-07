@@ -1,0 +1,27 @@
+/* Asegura que la página ocupe toda la altura */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Envoltorio principal en modo flex columna */
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Contenido que empuja el footer hacia abajo */
+.content-wrap {
+  min-height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Footer abajo siempre */
+.footer {
+  background-color: #212121;
+  color: white;
+  text-align: center;
+  padding: 10px 30px;
+}
