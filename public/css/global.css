@@ -1,27 +1,100 @@
-/* Asegura que la página ocupe toda la altura */
+/* ---------- Reset & base ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
 html, body {
   height: 100%;
   margin: 0;
+}
+
+:root {
+  /* Altura real del footer (ajústable segun si cambiamos padding/tipografía) */
+  --footer-h: 56px;
+}
+
+/* ---------- Layout principal ---------- */
+/* Envoltorio del contenido: ocupa toda la pantalla y deja sitio al footer fijo */
+.content-wrap {
+  min-height: 100vh;
+  padding: 20px;
+  padding-bottom: calc(var(--footer-h) + 16px); /* espacio para que nada quede oculto */
+}
+
+/* Footer fijo abajo */
+.footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--footer-h);
+  background: #212121;
+  color: #fff;
+  text-align: center;
+  line-height: var(--footer-h);         /* centra verticalmente el texto */
+  padding: 0 30px;                      /* lateral */
+  z-index: 1020;                        /* sobre el contenido, bajo modales */
+}
+
+/* ---------- Botón volver arriba ---------- */
+#btnScrollTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;                        /* lo muestra el JS */
+  z-index: 1100;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  justify-content: center;
+  align-items: center;
   padding: 0;
 }
 
-/* Envoltorio principal en modo flex columna */
-body {
-  display: flex;
-  flex-direction: column;
+/* ---------- CTA (contribuye) ---------- */
+.cta-section { margin-bottom: 1rem; }
+
+/* ---------- Botón icono (modo oscuro) ---------- */
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
 }
 
-/* Contenido que empuja el footer hacia abajo */
-.content-wrap {
-  min-height: 100%;
-  padding: 20px;
-  box-sizing: border-box;
+/* Mejor contraste en modo oscuro */
+[data-bs-theme="dark"] .btn-icon.btn-outline-secondary {
+  color: #e6e6e6;
+  border-color: #666;
 }
 
-/* Footer abajo siempre */
-.footer {
-  background-color: #212121;
-  color: white;
-  text-align: center;
-  padding: 10px 30px;
+/* ---------- Navbar: que quepa mejor y haga wrap ---------- */
+.navbar { --bs-navbar-padding-y: .25rem; }
+.navbar .nav-link { padding: .25rem .5rem; }
+.navbar .navbar-brand { font-size: 1rem; }
+
+@media (max-width: 576px) {
+  .navbar .nav-link { font-size: .9rem; }
+}
+
+/* ---------- (Opcional) Ajustes de dark mode globales ---------- */
+[data-bs-theme="dark"] body {
+  background-color: #121212;
+  color: #e6e6e6;
+}
+
+[data-bs-theme="dark"] .footer {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+[data-bs-theme="dark"] .card {
+  background-color: #181818;
+  color: #e6e6e6;
+  border-color: #2a2a2a;
 }

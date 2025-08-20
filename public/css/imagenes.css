@@ -4,3 +4,24 @@
   object-fit: cover;
   border-bottom: 1px solid #ccc;
 }
+
+/* Altura controlada y recorte elegante */
+.carrusel-img {
+  height: 420px;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Opcional: oscurecer un poco la imagen bajo el caption */
+.carousel-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.15);
+}
+
+#modalImg {
+  max-height: 420px;
+  object-fit: cover;
+  width: 100%;
+}

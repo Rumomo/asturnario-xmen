@@ -2,123 +2,89 @@
 require_once __DIR__ . '/../src/Xmen/Domain/Mutantes.php';
 require_once __DIR__ . '/../src/Xmen/Domain/Poder.php';
 
+/* Datos de prueba */
 $mutantes = [
-    new Mutante(1, "jeangrey", Poder::Telepatia, "Mutante con habilidades psíquicas avanzadas."),
-    new Mutante(2, "Nightcrawler", Poder::Invisibilidad, "Puede teletransportarse a voluntad."),
-    new Mutante(3, "Storm", Poder::Volar, "Controla el clima y puede volar."),
-    new Mutante(4, "Colossus", Poder::Fuerza, "Fuerza sobrehumana gracias a su cuerpo metálico."),
+    new Mutante(1, "jeangrey",    Poder::Telepatia,     "Mutante con habilidades psíquicas avanzadas."),
+    new Mutante(2, "Nightcrawler",Poder::Invisibilidad, "Puede teletransportarse a voluntad."),
+    new Mutante(3, "Storm",       Poder::Volar,         "Controla el clima y puede volar."),
+    new Mutante(4, "Colossus",    Poder::Fuerza,        "Fuerza sobrehumana gracias a su cuerpo metálico."),
 ];
+
+/* Config para partials */
+$pageTitle = 'Ficha de personajes | Wiki X-Men';
+$active    = 'personajes';
+$pageCss   = ['css/imagenes.css'];               // si te ayuda para tamaño de imágenes
+$pageJs    = ['js/personajes.js'];               // 👈 nuestro JS para el modal
+
+require __DIR__ . '/partials/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>X-Men Cards</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/imagenes.css">
-    <!-- Bootstrap CSS desde CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap 5 JS (para el menú desplegable) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
+<nav aria-label="breadcrumb" class="mb-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Ficha de personajes</li>
+  </ol>
+</nav>
 
-<!-- NAV -->
-<div class="content-wrap">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Wiki X-Men</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
+<div class="row">
+  <?php foreach ($mutantes as $mutante): ?>
+    <?php
+      // Resolver imagen por nombre
+      $nombre      = strtolower(str_replace(' ', '', $mutante->getNombre()));
+      $extensiones = ['jpg','jpeg','png','webp'];
+      $imagen      = 'images/default.jpg';
+      foreach ($extensiones as $ext) {
+        if (file_exists(__DIR__ . "/images/{$nombre}.{$ext}")) {
+          $imagen = "images/{$nombre}.{$ext}";
+          break;
+        }
+      }
+    ?>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="<?= htmlspecialchars($imagen) ?>" class="card-img-top" alt="Imagen de <?= htmlspecialchars($mutante->getNombre()) ?>">
+        <div class="card-body">
+          <h5 class="card-title mb-1"><?= htmlspecialchars(ucfirst($mutante->getNombre())) ?></h5>
+          <span class="badge bg-primary mb-2"><?= htmlspecialchars($mutante->getPoder()->value) ?></span>
+          <p class="card-text"><?= htmlspecialchars($mutante->getDescripcion()) ?></p>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-            <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
-            </li>
-
-            <li class="nav-item">
-            <a class="nav-link" href="personajes.php">Ficha de personajes</a>
-            </li>
-
-            <li class="nav-item">
-            <a class="nav-link" href="#">X-men</a>
-            </li>
-
-            <li class="nav-item">
-            <a class="nav-link" href="#">Hermandad de mutantes</a>
-            </li>
-
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Más
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Contacto</a></li>
-                <li><a class="dropdown-item" href="#">Créditos</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Ayuda</a></li>
-            </ul>
-            </li>
-        </ul>
-
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar mutante" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-        </form>
+          <!-- Botón que abre el modal y pasa datos -->
+          <button
+            class="btn btn-outline-primary btn-sm"
+            data-bs-toggle="modal"
+            data-bs-target="#modalPersonaje"
+            data-id="<?= $mutante->getId() ?>"
+            data-nombre="<?= htmlspecialchars(ucfirst($mutante->getNombre())) ?>"
+            data-poder="<?= htmlspecialchars($mutante->getPoder()->value) ?>"
+            data-desc="<?= htmlspecialchars($mutante->getDescripcion()) ?>"
+            data-img="<?= htmlspecialchars($imagen) ?>">
+            Ver detalle
+          </button>
         </div>
+      </div>
     </div>
-    </nav>
-    
-    <main>
-        <h1>Bienvenido a la wiqui del mundo de X-Men</h1>
-        <p>Descubre a los mutantes y sus habilidades.</p>
-        <div class="container mt-4">
-            <div class="row">
-                <?php foreach ($mutantes as $mutante): ?>
-                <?php
-                $nombre = strtolower(str_replace(' ', '', $mutante->getNombre()));
-                $extensiones = ['jpg', 'jpeg', 'png', 'webp'];
-                $imagen = 'images/default.jpg';
-
-                foreach ($extensiones as $ext) {
-                    if (file_exists(__DIR__ . "/images/{$nombre}.{$ext}")) {
-                        $imagen = "images/{$nombre}.{$ext}";
-                        break;
-                    }
-                }
-                ?>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                    <img src="<?= $imagen ?>" class="card-img-top" alt="Imagen de <?= $mutante->getNombre() ?>">
-                    <div class="card-body">
-                        <h5 class="card-title"><?= ucfirst($mutante->getNombre()) ?></h5>
-                        <p class="card-text"><?= $mutante->getDescripcion() ?></p>
-                        <span class="badge bg-primary"><?= $mutante->getPoder()->value ?></span>
-                    </div>
-                    </div>
-                </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-
-        
-    </main>
+  <?php endforeach; ?>
 </div>
-<!-- BODY -->
 
+<!-- Modal reutilizable -->
+<div class="modal fade" id="modalPersonaje" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalNombre">Nombre del personaje</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <img id="modalImg" src="" class="img-fluid rounded mb-3" alt="">
+        <p class="mb-2"><span id="modalPoder" class="badge bg-primary"></span></p>
+        <p id="modalDesc" class="mb-0"></p>
+      </div>
+      <div class="modal-footer">
+        <a id="linkFichaCompleta" href="#" class="btn btn-primary">Ver ficha completa</a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-<!-- FOOTER -->
-<footer class="footer">
-  © 2025 Asturnario X-Men | Proyecto educativo con Rumom y Adrián
-</footer>
-
-</body>
-</html>
+<?php require __DIR__ . '/partials/footer.php'; ?>
