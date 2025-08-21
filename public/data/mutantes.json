@@ -1,0 +1,373 @@
+[
+  {
+    "id": 1,
+    "slug": "jeangrey",
+    "nombre": "Jean Grey",
+    "descripcion": "Mutante con habilidades psíquicas avanzadas.",
+    "poderes": ["telepatia", "telequinesis"],
+    "primera_aparicion": "X-Men #1 (1963)",
+    "afiliaciones": ["X-Men"],
+    "imagen": "images/jeangrey.jpg"
+  },
+  {
+    "id": 2,
+    "slug": "nightcrawler",
+    "nombre": "Nightcrawler",
+    "descripcion": "Puede teletransportarse a voluntad.",
+    "poderes": ["teletransportacion", "invisibilidad"],
+    "primera_aparicion": "Giant-Size X-Men #1 (1975)",
+    "afiliaciones": ["X-Men", "Excalibur"],
+    "imagen": "images/nightcrawler.jpg"
+  },
+  {
+    "id": 3,
+    "slug": "storm",
+    "nombre": "Storm",
+    "descripcion": "Controla el clima y puede volar.",
+    "poderes": ["control_del_clima", "volar"],
+    "primera_aparicion": "Giant-Size X-Men #1 (1975)",
+    "afiliaciones": ["X-Men"],
+    "imagen": "images/storm.jpg"
+  },
+  {
+    "id": 4,
+    "slug": "colossus",
+    "nombre": "Colossus",
+    "descripcion": "Fuerza sobrehumana gracias a su cuerpo metálico.",
+    "poderes": ["piel_metalica", "superfuerza"],
+    "primera_aparicion": "Giant-Size X-Men #1 (1975)",
+    "afiliaciones": ["X-Men"],
+    "imagen": "images/colossus.webp"
+  },
+  {
+    "id": 5,
+    "slug": "23",
+    "nombre": "X-23",
+    "descripcion": "Clon de Lobezno con factor de curación y garras.",
+    "poderes": ["curacion", "superfuerza"],
+    "primera_aparicion": "NYX #3 (2004)",
+    "afiliaciones": ["X-Men", "X-Force"],
+    "imagen": "images/23.jpg"
+  },
+  {
+    "id": 6,
+    "slug": "angel",
+    "nombre": "Ángel",
+    "descripcion": "Mutante con alas emplumadas que le permiten volar.",
+    "poderes": ["volar", "curacion"],
+    "primera_aparicion": "X-Men #1 (1963)",
+    "afiliaciones": ["X-Men"],
+    "imagen": "images/angel.jpg"
+  },
+  {
+    "id": 7,
+    "slug": "anole",
+    "nombre": "Anole",
+    "descripcion": "Mutante con apariencia reptiliana y regeneración.",
+    "poderes": ["invisibilidad", "curacion"],
+    "primera_aparicion": "New Mutants vol.2 #2 (2003)",
+    "afiliaciones": ["New X-Men"],
+    "imagen": "images/anole.jpg"
+  },
+  {
+    "id": 8,
+    "slug": "armor",
+    "nombre": "Armor",
+    "descripcion": "Genera una armadura psiónica gigante.",
+    "poderes": ["armadura_psionica"],
+    "primera_aparicion": "Astonishing X-Men #4 (2004)",
+    "afiliaciones": ["X-Men"],
+    "imagen": "images/armor.jpg"
+  },
+  {
+    "id": 9,
+    "slug": "ball",
+    "nombre": "Cannonball",
+    "descripcion": "Vuelo cinético, casi invulnerable al impulsarse.",
+    "poderes": ["volar", "superfuerza"],
+    "primera_aparicion": "Marvel Graphic Novel #4 (1982)",
+    "afiliaciones": ["New Mutants", "X-Force"],
+    "imagen": "images/ball.jpg"
+  },
+  {
+    "id": 10,
+    "slug": "banshe",
+    "nombre": "Banshee",
+    "descripcion": "Puede emitir un grito sónico devastador y volar.",
+    "poderes": ["grito_sonico", "volar"],
+    "primera_aparicion": "X-Men #28 (1967)",
+    "afiliaciones": ["X-Men"],
+    "imagen": "images/banshe.jpg"
+  },
+  {
+    "id": 11,
+    "slug": "bestia",
+    "nombre": "Bestia",
+    "descripcion": "Gran fuerza, agilidad y genio científico.",
+    "poderes": ["superfuerza"],
+    "primera_aparicion": "X-Men #1 (1963)",
+    "afiliaciones": ["X-Men", "Vengadores"],
+    "imagen": "images/bestia.jpg"
+  },
+  {
+    "id": 12,
+    "slug": "bishop",
+    "nombre": "Bishop",
+    "descripcion": "Absorbe energía y la libera en ráfagas.",
+    "poderes": ["absorcion_de_energia", "electricidad"],
+    "primera_aparicion": "Uncanny X-Men #282 (1991)",
+    "afiliaciones": ["X-Men"],
+    "imagen": "images/bishop.jpg"
+  },
+  {
+    "id": 13,
+    "slug": "cable",
+    "nombre": "Cable",
+    "descripcion": "Poderosa telepatía/telequinesis y combate táctico.",
+    "poderes": ["telepatia", "telequinesis"],
+    "primera_aparicion": "New Mutants #87 (1990)",
+    "afiliaciones": ["X-Force", "X-Men"],
+    "imagen": "images/cable.jpg"
+  },
+  {
+    "id": 14,
+    "slug": "ciclope",
+    "nombre": "Cíclope",
+    "descripcion": "Dispara rayos ópticos concusivos.",
+    "poderes": ["rayos_opticos"],
+    "primera_aparicion": "X-Men #1 (1963)",
+    "afiliaciones": ["X-Men"],
+    "imagen": "images/ciclope.jpg"
+  },
+  {
+    "id": 15,
+    "slug": "dazler",
+    "nombre": "Dazzler",
+    "descripcion": "Convierte sonido en energía luminosa.",
+    "poderes": ["luz"],
+    "primera_aparicion": "X-Men #130 (1980)",
+    "afiliaciones": ["X-Men"],
+    "imagen": "images/dazler.jpg"
+  },
+  {
+    "id": 16,
+    "slug": "domino",
+    "nombre": "Domino",
+    "descripcion": "Manipula la probabilidad a su favor.",
+    "poderes": ["probabilidad"],
+    "primera_aparicion": "X-Force #8 (1992)",
+    "afiliaciones": ["X-Force"],
+    "imagen": "images/domino.jpg"
+  },
+  {
+    "id": 17,
+    "slug": "dust",
+    "nombre": "Dust",
+    "descripcion": "Convierte su cuerpo en arena.",
+    "poderes": ["arena"],
+    "primera_aparicion": "New X-Men #133 (2002)",
+    "afiliaciones": ["X-Men"],
+    "imagen": "images/dust.jpg"
+  },
+  {
+    "id": 18,
+    "slug": "elixir",
+    "nombre": "Elixir",
+    "descripcion": "Poder biomédico: sana o daña a nivel celular.",
+    "poderes": ["curacion"],
+    "primera_aparicion": "New Mutants vol.2 #5 (2004)",
+    "afiliaciones": ["New X-Men"],
+    "imagen": "images/elixir.jpg"
+  },
+  {
+    "id": 19,
+    "slug": "emma",
+    "nombre": "Emma Frost",
+    "descripcion": "Telepatía y forma de diamante.",
+    "poderes": ["telepatia", "forma_de_diamante"],
+    "primera_aparicion": "Uncanny X-Men #129 (1980)",
+    "afiliaciones": ["Hellfire Club", "X-Men"],
+    "imagen": "images/emma.jpg"
+  },
+  {
+    "id": 20,
+    "slug": "fenix",
+    "nombre": "Fénix",
+    "descripcion": "Manifestación cósmica de Jean Grey.",
+    "poderes": ["telepatia", "telequinesis", "poder_cosmico"],
+    "primera_aparicion": "X-Men #101 (1976)",
+    "afiliaciones": ["X-Men"],
+    "imagen": "images/fenix.jpg"
+  },
+  {
+    "id": 21,
+    "slug": "gambito",
+    "nombre": "Gambito",
+    "descripcion": "Carga objetos con energía cinética explosiva.",
+    "poderes": ["absorcion_de_energia"],
+    "primera_aparicion": "Uncanny X-Men #266 (1990)",
+    "afiliaciones": ["X-Men"],
+    "imagen": "images/gambito.jpg"
+  },
+  {
+    "id": 22,
+    "slug": "havok",
+    "nombre": "Havok",
+    "descripcion": "Proyecta explosiones de plasma.",
+    "poderes": ["absorcion_de_energia"],
+    "primera_aparicion": "X-Men #54 (1969)",
+    "afiliaciones": ["X-Men", "X-Factor"],
+    "imagen": "images/havok.jpg"
+  },
+  {
+    "id": 23,
+    "slug": "hellion",
+    "nombre": "Hellion",
+    "descripcion": "Telequinesis muy poderosa.",
+    "poderes": ["telequinesis"],
+    "primera_aparicion": "New Mutants vol.2 #2 (2003)",
+    "afiliaciones": ["New X-Men"],
+    "imagen": "images/hellion.jpg"
+  },
+  {
+    "id": 24,
+    "slug": "ice",
+    "nombre": "Hombre de Hielo",
+    "descripcion": "Manipula el hielo y el frío.",
+    "poderes": ["hielo"],
+    "primera_aparicion": "X-Men #1 (1963)",
+    "afiliaciones": ["X-Men"],
+    "imagen": "images/ice.jpg"
+  },
+  {
+    "id": 25,
+    "slug": "jubilo",
+    "nombre": "Júbilo",
+    "descripcion": "Genera plasmoides de energía luminosa.",
+    "poderes": ["luz"],
+    "primera_aparicion": "Uncanny X-Men #244 (1989)",
+    "afiliaciones": ["X-Men", "Generación X"],
+    "imagen": "images/jubilo.jpg"
+  },
+  {
+    "id": 26,
+    "slug": "kitty",
+    "nombre": "Kitty Pryde",
+    "descripcion": "Puede atravesar materia sólida.",
+    "poderes": ["intangibilidad"],
+    "primera_aparicion": "Uncanny X-Men #129 (1980)",
+    "afiliaciones": ["X-Men", "Excalibur"],
+    "imagen": "images/kitty.jpg"
+  },
+  {
+    "id": 27,
+    "slug": "lobezno",
+    "nombre": "Lobezno",
+    "descripcion": "Factor curación y garras de adamantium.",
+    "poderes": ["curacion", "superfuerza"],
+    "primera_aparicion": "Incredible Hulk #180 (1974)",
+    "afiliaciones": ["X-Men", "X-Force", "Vengadores"],
+    "imagen": "images/lobezno.jpg"
+  },
+  {
+    "id": 28,
+    "slug": "magic",
+    "nombre": "Magik",
+    "descripcion": "Hechicera y teleportadora a través del Limbo.",
+    "poderes": ["hechiceria", "teletransportacion"],
+    "primera_aparicion": "Giant-Size X-Men #1 (cameo), New Mutants #14 (1984)",
+    "afiliaciones": ["New Mutants", "X-Men"],
+    "imagen": "images/magic.jpg"
+  },
+  {
+    "id": 29,
+    "slug": "marrow",
+    "nombre": "Marrow",
+    "descripcion": "Control de huesos como armas.",
+    "poderes": ["superfuerza"],
+    "primera_aparicion": "X-Men Prime (1995)",
+    "afiliaciones": ["Morlocks", "X-Men"],
+    "imagen": "images/marrow.jpg"
+  },
+  {
+    "id": 30,
+    "slug": "pixi",
+    "nombre": "Pixie",
+    "descripcion": "Alas, polvo alucinógeno y magia.",
+    "poderes": ["volar", "hechiceria", "teletransportacion"],
+    "primera_aparicion": "New X-Men vol.2 #5 (2004)",
+    "afiliaciones": ["X-Men"],
+    "imagen": "images/pixi.jpg"
+  },
+  {
+    "id": 31,
+    "slug": "polaris",
+    "nombre": "Polaris",
+    "descripcion": "Hija de Magneto, controla el magnetismo.",
+    "poderes": ["magnetismo"],
+    "primera_aparicion": "X-Men #49 (1968)",
+    "afiliaciones": ["X-Men", "X-Factor"],
+    "imagen": "images/polaris.jpg"
+  },
+  {
+    "id": 32,
+    "slug": "profesor",
+    "nombre": "Profesor X",
+    "descripcion": "Telepatía de altísimo nivel.",
+    "poderes": ["telepatia"],
+    "primera_aparicion": "X-Men #1 (1963)",
+    "afiliaciones": ["X-Men"],
+    "imagen": "images/profesor.webp"
+  },
+  {
+    "id": 33,
+    "slug": "psylocke",
+    "nombre": "Psylocke",
+    "descripcion": "Telepatía y armas psíquicas.",
+    "poderes": ["telepatia", "telequinesis"],
+    "primera_aparicion": "New Mutants Annual #2 (1986)",
+    "afiliaciones": ["X-Men"],
+    "imagen": "images/psylocke.jpg"
+  },
+  {
+    "id": 34,
+    "slug": "rock",
+    "nombre": "Rockslide",
+    "descripcion": "Cuerpo de roca viviente.",
+    "poderes": ["superfuerza"],
+    "primera_aparicion": "New Mutants vol.2 #3 (2003)",
+    "afiliaciones": ["New X-Men"],
+    "imagen": "images/rock.jpg"
+  },
+  {
+    "id": 35,
+    "slug": "sage",
+    "nombre": "Sage",
+    "descripcion": "Mente computadora, memoria perfecta.",
+    "poderes": ["telepatia"],
+    "primera_aparicion": "X-Men #118 (1979)",
+    "afiliaciones": ["X-Men"],
+    "imagen": "images/sage.jpg"
+  },
+  {
+    "id": 36,
+    "slug": "surge",
+    "nombre": "Surge",
+    "descripcion": "Absorbe electricidad y la libera.",
+    "poderes": ["electricidad"],
+    "primera_aparicion": "New Mutants vol.2 #8 (2004)",
+    "afiliaciones": ["New X-Men"],
+    "imagen": "images/surge.jpg"
+  },
+
+  {
+  "id": 37,
+  "slug": "picara",
+  "nombre": "Pícara",
+  "descripcion": "Absorbe temporalmente poderes, recuerdos y habilidades al tocar.",
+  "poderes": ["absorcion_de_poderes", "volar", "superfuerza"],
+  "primera_aparicion": "Avengers Annual #10 (1981)",
+  "afiliaciones": ["X-Men"],
+  "imagen": "images/picara.jpg"
+  }
+]
