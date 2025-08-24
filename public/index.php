@@ -129,7 +129,7 @@ foreach ($destacados as $slug) {
         </a>
     </div>
     <div class="col-md-4">
-        <a class="text-decoration-none" href="#">
+        <a class="text-decoration-none" href="poderes.php">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">Poderes</h5>

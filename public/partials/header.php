@@ -38,10 +38,14 @@ $active    = $active    ?? 'inicio';    // para resaltar item del menú: inicio|
             <a class="nav-link <?= $active === 'personajes' ? 'active' : '' ?>" href="personajes.php">Ficha de personajes</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link <?= $active === 'xmen' ? 'active' : '' ?>" href="#">X-men</a>
+            <a class="nav-link <?= $active === 'xmen' ? 'active' : '' ?>" href="xmen.php">X-men</a>
           </li>
           <li class="nav-item">
             <a class="nav-link <?= $active === 'hermandad' ? 'active' : '' ?>" href="#">Hermandad de mutantes</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link <?= $active === 'poderes' ? 'active' : '' ?>" href="poderes.php">Poderes</a>
           </li>
 
           <li class="nav-item dropdown">

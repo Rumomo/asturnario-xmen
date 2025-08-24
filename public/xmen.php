@@ -1,20 +1,14 @@
 <?php
-// -------------------------------------
-// Config de página + header
-// -------------------------------------
-$pageTitle = 'Ficha de personajes | Wiki X‑Men';
-$active    = 'personajes';
-$pageCss   = ['css/imagenes.css'];     // si tienes estilos de imágenes
-$pageJs    = ['js/personajes.js'];     // tu JS del modal (opcional)
+$pageTitle = 'X-Men | Wiki X-Men';
+$active    = 'xmen';
+$pageCss   = ['css/imagenes.css'];
+$pageJs    = ['js/personajes.js']; // mantiene tu JS de modal
 require __DIR__ . '/partials/header.php';
 
-// -------------------------------------
 // Cargar mutantes desde JSON
-// (prueba dos ubicaciones: dentro/fuera de /public)
-// -------------------------------------
 $posibles = [
-  __DIR__ . '/data/mutantes.json',    // dentro de /public
-  __DIR__ . '/../data/mutantes.json', // fuera de /public
+  __DIR__ . '/data/mutantes.json',
+  __DIR__ . '/../data/mutantes.json',
 ];
 $mutantesFile = null;
 foreach ($posibles as $p) { if (is_readable($p)) { $mutantesFile = $p; break; } }
@@ -25,9 +19,7 @@ if (!$mutantesFile) {
 }
 $mutantes = json_decode(file_get_contents($mutantesFile), true) ?? [];
 
-// -------------------------------------
 // Helpers
-// -------------------------------------
 function pretty_poder(string $p): string {
   $p = str_replace('_', ' ', $p);
   $map = [
@@ -42,7 +34,6 @@ function pretty_poder(string $p): string {
   $base = mb_strtolower($p);
   return $map[$base] ?? ucfirst($base);
 }
-
 function resolver_imagen(array $m): string {
   $default = 'images/default.jpg';
   if (!empty($m['imagen']) && file_exists(__DIR__ . '/' . $m['imagen'])) {
@@ -56,14 +47,22 @@ function resolver_imagen(array $m): string {
   return $default;
 }
 
-// -------------------------------------
-// Ordenar alfabéticamente (servidor)
-// y preparar lista de poderes disponibles (para el filtro)
-// -------------------------------------
-usort($mutantes, fn($a,$b) => strcasecmp($a['nombre'] ?? '', $b['nombre'] ?? ''));
+// Filtrar SOLO miembros de X‑Men
+$xmen = array_values(array_filter($mutantes, function ($m) {
+  if (empty($m['afiliaciones']) || !is_array($m['afiliaciones'])) return false;
+  foreach ($m['afiliaciones'] as $af) {
+    $af = mb_strtolower($af);
+    if ($af === 'x-men' || $af === 'xmen') return true;
+  }
+  return false;
+}));
 
+// Ordenar alfabéticamente por nombre (servidor)
+usort($xmen, fn($a,$b) => strcasecmp($a['nombre'] ?? '', $b['nombre'] ?? ''));
+
+// Poderes disponibles (para el filtro)
 $poderesDisponibles = [];
-foreach ($mutantes as $m) {
+foreach ($xmen as $m) {
   foreach (($m['poderes'] ?? []) as $p) {
     $key = mb_strtolower($p);
     $poderesDisponibles[$key] = pretty_poder($p);
@@ -72,17 +71,16 @@ foreach ($mutantes as $m) {
 asort($poderesDisponibles);
 ?>
 
-<!-- Breadcrumb -->
 <nav aria-label="breadcrumb" class="mb-3">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Ficha de personajes</li>
+    <li class="breadcrumb-item active" aria-current="page">X-Men</li>
   </ol>
 </nav>
 
 <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-  <h1 class="h3 mb-0">Personajes</h1>
-  <span class="badge bg-dark"><?= count($mutantes) ?> personajes</span>
+  <h1 class="h3 mb-0">Miembros de los X‑Men</h1>
+  <span class="badge bg-dark"><?= count($xmen) ?> miembros</span>
 </div>
 
 <!-- Controles: buscar, filtrar por poder y ordenar -->
@@ -109,16 +107,16 @@ asort($poderesDisponibles);
   </div>
 </div>
 
-<div id="gridPersonajes" class="row">
-  <?php foreach ($mutantes as $m): ?>
+<div id="gridXmen" class="row">
+  <?php foreach ($xmen as $m): ?>
     <?php
-      $img        = resolver_imagen($m);
-      $nombre     = $m['nombre'] ?? ucfirst($m['slug']);
-      $desc       = $m['descripcion'] ?? '';
-      $poderes    = $m['poderes'] ?? [];
+      $img      = resolver_imagen($m);
+      $nombre   = $m['nombre'] ?? ucfirst($m['slug']);
+      $desc     = $m['descripcion'] ?? '';
+      $poderes  = $m['poderes'] ?? [];
       $poderesTxt = implode(', ', array_map('pretty_poder', $poderes));
       $poderesKey = implode(',', array_map('mb_strtolower', $poderes));
-      $id         = (int)($m['id'] ?? 0);
+      $id       = (int)($m['id'] ?? 0);
     ?>
     <div class="col-md-4 mb-4 item-personaje"
          data-nombre="<?= htmlspecialchars(mb_strtolower($nombre)) ?>"
@@ -127,17 +125,12 @@ asort($poderesDisponibles);
         <img src="<?= htmlspecialchars($img) ?>" class="card-img-top" alt="Imagen de <?= htmlspecialchars($nombre) ?>">
         <div class="card-body">
           <h5 class="card-title mb-1"><?= htmlspecialchars($nombre) ?></h5>
-
-          <!-- badges de poderes -->
           <div class="mb-2">
             <?php foreach ($poderes as $p): ?>
               <span class="badge bg-primary me-1 mb-1"><?= htmlspecialchars(pretty_poder($p)) ?></span>
             <?php endforeach; ?>
           </div>
-
           <p class="card-text"><?= htmlspecialchars($desc) ?></p>
-
-          <!-- Botón que abre el modal con data-* -->
           <button
             class="btn btn-outline-primary btn-sm"
             data-bs-toggle="modal"
@@ -149,8 +142,6 @@ asort($poderesDisponibles);
             data-img="<?= htmlspecialchars($img) ?>">
             Ver detalle
           </button>
-
-          <!-- Link a ficha completa -->
           <a class="btn btn-link btn-sm" href="personaje.php?id=<?= $id ?>">Ficha completa »</a>
         </div>
       </div>
@@ -158,7 +149,7 @@ asort($poderesDisponibles);
   <?php endforeach; ?>
 </div>
 
-<!-- Modal reutilizable -->
+<!-- Modal (sin cambios) -->
 <div class="modal fade" id="modalPersonaje" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
@@ -168,7 +159,6 @@ asort($poderesDisponibles);
       </div>
       <div class="modal-body">
         <img id="modalImg" src="" class="img-fluid rounded mb-3" alt="">
-        <!-- si prefieres badges en vez de texto, cambia a un contenedor y píntalos en JS -->
         <p class="mb-2"><span id="modalPoder" class="badge bg-primary"></span></p>
         <p id="modalDesc" class="mb-0"></p>
       </div>
@@ -180,10 +170,10 @@ asort($poderesDisponibles);
   </div>
 </div>
 
-<!-- JS de filtrado/orden (puedes moverlo a js/personajes.js si prefieres) -->
+<!-- JS de filtrado/orden client-side (puedes moverlo a js/personajes.js si prefieres) -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  const $grid   = document.getElementById('gridPersonajes');
+  const $grid   = document.getElementById('gridXmen');
   const $cards  = Array.from($grid.querySelectorAll('.item-personaje'));
   const $q      = document.getElementById('filtroNombre');
   const $poder  = document.getElementById('filtroPoder');
@@ -194,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const p = ($poder.value || '').toLowerCase();
 
     $cards.forEach(card => {
-      const nom  = card.getAttribute('data-nombre') || '';
+      const nom = card.getAttribute('data-nombre') || '';
       const pods = (card.getAttribute('data-poderes') || '');
       const coincideNombre = !q || nom.includes(q);
       const coincidePoder  = !p || pods.split(',').includes(p);
@@ -215,6 +205,7 @@ document.addEventListener('DOMContentLoaded', function () {
       return dir === 'az' ? cmp : -cmp;
     });
 
+    // reordenar en el DOM
     visibles.forEach(el => $grid.appendChild(el));
   }
 
